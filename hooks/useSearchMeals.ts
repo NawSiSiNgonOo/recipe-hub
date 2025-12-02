@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query"
 import { api } from "@/libs/axios";
+import { MealResponse } from "@/types/meals";
 
 export const useSearchMeals=(query: string)=>{
-    return useQuery(
+    return useQuery<MealResponse>(
         {
             queryKey:["search-meals",query],
             queryFn:async()=>{
@@ -10,7 +11,6 @@ export const useSearchMeals=(query: string)=>{
                     params:{s:query},
                 });
                 return res.data;
-                // console.log(res.data.meals);
             },
             enabled:Boolean(query),
         }

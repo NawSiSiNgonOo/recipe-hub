@@ -3,6 +3,7 @@
 import SearchForm from "@/components/SearchForm";
 import { useState } from "react";
 import { useSearchMeals } from "@/hooks/useSearchMeals";
+import RecipeCard from "@/components/RecipeCard";
 
 export default function Home() {
   const [recipe,setRecipe]=useState("");
@@ -15,11 +16,9 @@ export default function Home() {
       <SearchForm onSubmit={(data)=>setRecipe(data.recipe)}/>
       {isLoading && <p>Loading ...</p>}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {
-          meals.map((meal:any)=>{
-            
-          })
-        }
+        {meals.map((meal)=>(
+          <RecipeCard key={meal.idMeal} meal={meal}/>
+        ))}
       </div>
     </div>
   );
